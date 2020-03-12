@@ -41,6 +41,7 @@ module.exports = {
     'react/jsx-curly-newline': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'import/no-extraneous-dependencies': 'off',
     'import-helpers/order-imports': [
       'warn',
       {
