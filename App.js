@@ -1,5 +1,13 @@
-import { registerRootComponent } from 'expo';
+import React from 'react';
+import { StatusBar } from 'react-native';
 
-import Index from './src';
+import Routes from '~/routes';
 
-registerRootComponent(Index);
+export default function App() {
+  return (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <Routes />
+    </>
+  );
+}
