@@ -40,8 +40,9 @@ export default function Home() {
     return <View style={styles.line} />;
   };
 
-  const renderHeader = () => {
-    return (
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Meus artigos</Text>
       <View style={styles.content}>
         <TouchableOpacity style={styles.icon}>
           <FontAwesome
@@ -54,19 +55,12 @@ export default function Home() {
           <FontAwesome name="trash" size={25} color={colors.echo_blue} />
         </TouchableOpacity>
       </View>
-    );
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Meus artigos</Text>
       <FlatList
         data={data}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => <List data={item} />}
         ItemSeparatorComponent={renderSeparator}
-        ListHeaderComponent={renderHeader}
       />
     </View>
   );
