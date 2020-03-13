@@ -1,7 +1,10 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+
+import { FontAwesome } from '@expo/vector-icons';
 
 import List from '~/components/List';
+import { colors } from '~/styles';
 
 import styles from './style';
 
@@ -37,6 +40,23 @@ export default function Home() {
     return <View style={styles.line} />;
   };
 
+  const renderHeader = () => {
+    return (
+      <View style={styles.content}>
+        <TouchableOpacity style={styles.icon}>
+          <FontAwesome
+            name="pencil-square-o"
+            size={25}
+            color={colors.echo_blue}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.icon}>
+          <FontAwesome name="trash" size={25} color={colors.echo_blue} />
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meus artigos</Text>
@@ -46,7 +66,7 @@ export default function Home() {
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => <List data={item} />}
         ItemSeparatorComponent={renderSeparator}
-        contentContainerStyle={styles.content}
+        ListHeaderComponent={renderHeader}
       />
     </View>
   );

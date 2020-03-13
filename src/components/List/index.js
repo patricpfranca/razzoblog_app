@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 import { MaterialIcons } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 
 import { colors } from '~/styles';
 
@@ -21,3 +22,11 @@ export default function List({ data }) {
     </View>
   );
 }
+
+List.propTypes = {
+  data: PropTypes.shape({
+    author: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+  }).isRequired,
+};

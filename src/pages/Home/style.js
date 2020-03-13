@@ -10,7 +10,10 @@ export default StyleSheet.create({
     marginLeft: 30,
   },
   content: {
-    paddingHorizontal: 0,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
   container: {
     padding: 15,
@@ -18,5 +21,8 @@ export default StyleSheet.create({
   line: {
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.whisper,
+  },
+  icon: {
+    marginHorizontal: 3,
   },
 });
