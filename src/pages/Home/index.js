@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import ActionButton from 'react-native-action-button';
 
 import { FontAwesome } from '@expo/vector-icons';
 
@@ -53,6 +54,7 @@ export default function Home() {
         keyExtractor={item => String(item._id)}
         renderItem={({ item }) => <List data={item} check={checkPublication} />}
       />
+      <ActionButton buttonColor={colors.slate_blue} onPress={() => {}} />
     </View>
   );
 }
