@@ -7,6 +7,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     padding: 10,
     alignItems: 'center',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.whisper,
   },
   boxIcon: {
     paddingHorizontal: 15,

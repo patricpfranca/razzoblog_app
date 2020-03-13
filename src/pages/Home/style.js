@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '~/styles';
-
 export default StyleSheet.create({
   title: {
     fontSize: 22,
@@ -17,10 +15,7 @@ export default StyleSheet.create({
   },
   container: {
     padding: 15,
-  },
-  line: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.whisper,
+    flex: 1,
   },
   icon: {
     marginHorizontal: 3,

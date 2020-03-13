@@ -26,10 +26,6 @@ export default function Home() {
     loadPublication();
   }, []);
 
-  const renderSeparator = () => {
-    return <View style={styles.line} />;
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meus artigos</Text>
@@ -50,7 +46,6 @@ export default function Home() {
         showsVerticalScrollIndicator={false}
         keyExtractor={item => String(item._id)}
         renderItem={({ item }) => <List data={item} />}
-        ItemSeparatorComponent={renderSeparator}
       />
     </View>
   );
