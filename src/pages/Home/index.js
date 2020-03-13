@@ -1,40 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 import { FontAwesome } from '@expo/vector-icons';
 
 import List from '~/components/List';
+import api from '~/services/api';
 import { colors } from '~/styles';
 
 import styles from './style';
 
 export default function Home() {
-  const data = [
-    {
-      id: 1,
-      author: 'Rudi Duarte',
-      date: '06/06/2019',
-      title: 'O que é identidade visual?',
-    },
-    {
-      id: 2,
-      author: 'Rudi Duarte',
-      date: '06/06/2019',
-      title: 'O que é identidade visual?',
-    },
-    {
-      id: 3,
-      author: 'Rudi Duarte',
-      date: '06/06/2019',
-      title: 'O que é identidade visual?',
-    },
-    {
-      id: 4,
-      author: 'Rudi Duarte',
-      date: '06/06/2019',
-      title: 'O que é identidade visual?',
-    },
-  ];
+  const [publication, setPublication] = useState([]);
+
+  async function loadPublication() {
+    try {
+      const response = await api.get('/publication');
+
+      setPublication(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    loadPublication();
+  }, []);
 
   const renderSeparator = () => {
     return <View style={styles.line} />;
@@ -56,9 +46,9 @@ export default function Home() {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={data}
+        data={publication}
         showsVerticalScrollIndicator={false}
-        keyExtractor={item => String(item.id)}
+        keyExtractor={item => String(item._id)}
         renderItem={({ item }) => <List data={item} />}
         ItemSeparatorComponent={renderSeparator}
       />
