@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 import ActionButton from 'react-native-action-button';
 
 import { FontAwesome } from '@expo/vector-icons';
+import PropTypes from 'prop-types';
 
 import List from '~/components/List';
+import ModalComp from '~/components/ModalComp';
+import Register from '~/pages/Register';
 import api from '~/services/api';
 import { colors } from '~/styles';
 
 import styles from './style';
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [publication, setPublication] = useState([]);
+  const [modal, setModal] = useState(false);
 
   async function loadPublication() {
     try {
@@ -21,8 +25,12 @@ export default function Home() {
 
       setPublication(response);
     } catch (error) {
-      console.log(error);
+      Alert.alert('Erro', 'Ocorreu um erro, tente novamente mais tarde!');
     }
+  }
+
+  function refreshList() {
+    loadPublication();
   }
 
   function checkPublication(item) {
@@ -54,7 +62,21 @@ export default function Home() {
         keyExtractor={item => String(item._id)}
         renderItem={({ item }) => <List data={item} check={checkPublication} />}
       />
-      <ActionButton buttonColor={colors.slate_blue} onPress={() => {}} />
+      <ActionButton
+        buttonColor={colors.slate_blue}
+        onPress={() => setModal(!modal)}
+      />
+      <ModalComp close={() => setModal(!modal)} modal={modal} title="Cadastrar">
+        <Register
+          close={() => setModal(!modal)}
+          navigation={navigation}
+          refresh={refreshList}
+        />
+      </ModalComp>
     </View>
   );
 }
+
+Home.propTypes = {
+  navigation: PropTypes.shape({}).isRequired,
+};
