@@ -14,12 +14,18 @@ export default function Home() {
 
   async function loadPublication() {
     try {
-      const response = await api.get('/publication');
+      const { data } = await api.get('/publication');
 
-      setPublication(response.data);
+      const response = data.map(obj => ({ ...obj, checked: false }));
+
+      setPublication(response);
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function checkPublication(item) {
+    console.log(item);
   }
 
   useEffect(() => {
@@ -45,7 +51,7 @@ export default function Home() {
         data={publication}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => String(item._id)}
-        renderItem={({ item }) => <List data={item} />}
+        renderItem={({ item }) => <List data={item} check={checkPublication} />}
       />
     </View>
   );
