@@ -16,6 +16,7 @@ import styles from './style';
 export default function Home({ navigation }) {
   const [publication, setPublication] = useState([]);
   const [modal, setModal] = useState(false);
+  const [checked, setChecked] = useState([]);
 
   async function loadPublication() {
     try {
@@ -33,8 +34,12 @@ export default function Home({ navigation }) {
     loadPublication();
   }
 
-  function checkPublication(item) {
-    console.log(item);
+  function checkPublication(id) {
+    const checkIn = publication.map(item =>
+      item._id === id ? { ...item, checked: !item.checked } : item
+    );
+    setPublication(checkIn);
+    setChecked(id);
   }
 
   useEffect(() => {

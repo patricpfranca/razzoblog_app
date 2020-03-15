@@ -27,11 +27,15 @@ export default function List({ data, check }) {
   }, [opacity]);
 
   return (
-    <Animated.View style={[styles.container, { opacity }]}>
-      <TouchableOpacity style={styles.boxIcon} onPress={() => check(data)}>
+    <Animated.View
+      style={[
+        !data.checked ? styles.container : styles.checkedContainer,
+        { opacity },
+      ]}>
+      <TouchableOpacity style={styles.boxIcon} onPress={() => check(data._id)}>
         <MaterialIcons
           name="check-circle"
-          size={data.checked === true ? 45 : 25}
+          size={data.checked === true ? 35 : 25}
           color={data.checked === true ? colors.slate_blue : colors.echo_blue}
         />
       </TouchableOpacity>
@@ -48,6 +52,7 @@ export default function List({ data, check }) {
 
 List.propTypes = {
   data: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
