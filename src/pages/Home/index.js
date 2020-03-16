@@ -37,6 +37,10 @@ export default function Home({ navigation }) {
     return publication.filter(pub => pub.checked);
   }, [publication]);
 
+  function selectedCheck() {
+    return `${filter.length} artigo(s) selecionado(s)`;
+  }
+
   function checkPublication(id) {
     const checkIn = publication.map(item =>
       item._id === id ? { ...item, checked: !item.checked } : item
@@ -63,20 +67,25 @@ export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Meus artigos</Text>
-      <View style={styles.content}>
-        <TouchableOpacity style={styles.icon}>
-          <FontAwesome
-            name="pencil-square-o"
-            size={25}
-            color={colors.echo_blue}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.icon}
-          onPress={() => deletePublication()}>
-          <FontAwesome name="trash" size={25} color={colors.echo_blue} />
-        </TouchableOpacity>
-      </View>
+      {filter.length > 0 && (
+        <View style={styles.content}>
+          <Text style={styles.selected}>{selectedCheck()}</Text>
+          <View style={styles.boxIcon}>
+            <TouchableOpacity style={styles.icon}>
+              <FontAwesome
+                name="pencil-square-o"
+                size={25}
+                color={colors.echo_blue}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.icon}
+              onPress={() => deletePublication()}>
+              <FontAwesome name="trash" size={25} color={colors.echo_blue} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
       <FlatList
         data={publication}
         showsVerticalScrollIndicator={false}

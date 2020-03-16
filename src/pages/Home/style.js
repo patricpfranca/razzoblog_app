@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '~/styles';
+
 export default StyleSheet.create({
   title: {
     fontSize: 22,
@@ -9,9 +11,13 @@ export default StyleSheet.create({
   },
   content: {
     paddingHorizontal: 15,
+    paddingTop: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
+    marginTop: 10,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: colors.whisper,
   },
   container: {
     padding: 15,
@@ -19,5 +25,13 @@ export default StyleSheet.create({
   },
   icon: {
     marginHorizontal: 3,
+  },
+  boxIcon: {
+    flexDirection: 'row',
+  },
+  selected: {
+    fontSize: 16,
+    color: colors.echo_blue,
+    lineHeight: 26,
   },
 });
