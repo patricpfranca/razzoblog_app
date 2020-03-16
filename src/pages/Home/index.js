@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
 import ActionButton from 'react-native-action-button';
 
@@ -16,7 +16,6 @@ import styles from './style';
 export default function Home({ navigation }) {
   const [publication, setPublication] = useState([]);
   const [modal, setModal] = useState(false);
-  const [checked, setChecked] = useState([]);
 
   async function loadPublication() {
     try {
@@ -34,12 +33,27 @@ export default function Home({ navigation }) {
     loadPublication();
   }
 
+  const filter = useMemo(() => {
+    return publication.filter(pub => pub.checked);
+  }, [publication]);
+
   function checkPublication(id) {
     const checkIn = publication.map(item =>
       item._id === id ? { ...item, checked: !item.checked } : item
     );
     setPublication(checkIn);
-    setChecked(id);
+  }
+
+  async function deletePublication() {
+    if (filter.length === 0) {
+      Alert.alert('Erro', 'Selecione ao menos uma publicação');
+    } else {
+      filter.forEach(item => {
+        api.delete(`/publication/${item._id}`);
+      });
+      refreshList();
+      Alert.alert('Sucesso', 'Todos os itens selecionados foram deletados');
+    }
   }
 
   useEffect(() => {
@@ -57,7 +71,9 @@ export default function Home({ navigation }) {
             color={colors.echo_blue}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.icon}>
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => deletePublication()}>
           <FontAwesome name="trash" size={25} color={colors.echo_blue} />
         </TouchableOpacity>
       </View>
