@@ -21,4 +21,9 @@ export default StyleSheet.create({
     lineHeight: 24,
     marginBottom: 10,
   },
+  logo: {
+    marginLeft: 15,
+    width: 130,
+    height: 53,
+  },
 });
