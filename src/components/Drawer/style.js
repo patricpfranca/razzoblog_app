@@ -1,29 +1,30 @@
 import { StyleSheet } from 'react-native';
 
+import { heightPercentageToDP, widthPercentageToDP } from '~/config/PixelRatio';
 import { colors } from '~/styles';
 
 export default StyleSheet.create({
   container: {
-    padding: 5,
+    padding: heightPercentageToDP('1%'),
   },
   title: {
-    fontSize: 16,
+    fontSize: heightPercentageToDP('2.5%'),
     color: colors.echo_blue,
     textTransform: 'uppercase',
-    marginVertical: 12,
+    marginVertical: heightPercentageToDP('2%'),
   },
   content: {
-    padding: 15,
+    padding: heightPercentageToDP('2.5%'),
   },
   links: {
-    fontSize: 14,
+    fontSize: heightPercentageToDP('2.35%'),
     fontWeight: 'bold',
-    lineHeight: 24,
-    marginBottom: 10,
+    lineHeight: heightPercentageToDP('3.8%'),
+    marginBottom: heightPercentageToDP('2.1%'),
   },
   logo: {
-    marginLeft: 15,
-    width: 130,
-    height: 53,
+    marginLeft: widthPercentageToDP('3.8%'),
+    width: widthPercentageToDP('36%'),
+    height: heightPercentageToDP('8%'),
   },
 });

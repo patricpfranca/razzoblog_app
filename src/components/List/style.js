@@ -1,34 +1,35 @@
 import { StyleSheet } from 'react-native';
 
+import { heightPercentageToDP } from '~/config/PixelRatio';
 import { colors } from '~/styles';
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    padding: 10,
+    padding: heightPercentageToDP('2.1%'),
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.whisper,
   },
   boxIcon: {
-    paddingHorizontal: 15,
+    paddingHorizontal: heightPercentageToDP('2.5%'),
   },
   info: {
     flexDirection: 'column',
   },
   title: {
-    fontSize: 18,
-    lineHeight: 28,
+    fontSize: heightPercentageToDP('2.9%'),
+    lineHeight: heightPercentageToDP('3.6%'),
     fontWeight: 'bold',
     color: colors.black_rock,
   },
   txtInfo: {
-    fontSize: 14,
+    fontSize: heightPercentageToDP('2.3%'),
     color: colors.echo_blue,
   },
   checkedContainer: {
     flexDirection: 'row',
-    padding: 10,
+    padding: heightPercentageToDP('2.1%'),
     alignItems: 'center',
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: colors.whisper,
@@ -38,7 +39,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.39,
     shadowRadius: 8.3,
     elevation: 10,
-    borderRadius: 14,
-    margin: 5,
+    borderRadius: heightPercentageToDP('2.35%'),
+    margin: heightPercentageToDP('1%'),
   },
 });

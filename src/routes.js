@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Image } from 'react-native';
+import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator, DrawerActions } from 'react-navigation-drawer';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import Drawer from '~/components/Drawer';
+import { widthPercentageToDP, heightPercentageToDP } from '~/config/PixelRatio';
 import Home from '~/pages/Home';
 
 import { colors } from './styles';
@@ -23,23 +24,18 @@ const Routes = createAppContainer(
             navigationOptions: ({ navigation }) => ({
               headerRight: () => (
                 <TouchableOpacity
-                  style={{ marginRight: 15 }}
+                  style={styles.menu}
                   onPress={() =>
                     navigation.dispatch(DrawerActions.toggleDrawer())
                   }>
                   <MaterialIcons
                     name="menu"
-                    size={25}
+                    size={heightPercentageToDP('3.8%')}
                     color={colors.echo_blue}
                   />
                 </TouchableOpacity>
               ),
-              headerLeft: () => (
-                <Image
-                  source={logo}
-                  style={{ marginLeft: 15, width: 130, height: 53 }}
-                />
-              ),
+              headerLeft: () => <Image source={logo} style={styles.logo} />,
               title: null,
             }),
           },
@@ -56,5 +52,16 @@ const Routes = createAppContainer(
     { contentComponent: Drawer }
   )
 );
+
+const styles = StyleSheet.create({
+  logo: {
+    marginLeft: widthPercentageToDP('3.8%'),
+    width: widthPercentageToDP('36%'),
+    height: heightPercentageToDP('8%'),
+  },
+  menu: {
+    marginRight: widthPercentageToDP('3.8%'),
+  },
+});
 
 export default Routes;

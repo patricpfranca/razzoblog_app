@@ -129,5 +129,5 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
-  value: null,
+  value: [],
 };

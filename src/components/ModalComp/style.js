@@ -1,21 +1,23 @@
 import { StyleSheet } from 'react-native';
 
+import { heightPercentageToDP } from '~/config/PixelRatio';
+
 export default StyleSheet.create({
   container: {
-    marginTop: 22,
+    marginTop: heightPercentageToDP('3.5%'),
   },
   content: {
-    marginTop: 22,
+    marginTop: heightPercentageToDP('3.5%'),
     flex: 1,
-    padding: 15,
+    padding: heightPercentageToDP('2.5%'),
   },
   close: {
     alignItems: 'flex-end',
   },
   title: {
-    fontSize: 22,
+    fontSize: heightPercentageToDP('3.5%'),
     fontWeight: 'bold',
-    marginBottom: 25,
-    lineHeight: 32,
+    marginBottom: heightPercentageToDP('3.8%'),
+    lineHeight: heightPercentageToDP('4.1%'),
   },
 });

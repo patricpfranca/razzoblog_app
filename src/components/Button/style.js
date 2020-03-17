@@ -1,16 +1,17 @@
 import { StyleSheet } from 'react-native';
 
+import { heightPercentageToDP } from '~/config/PixelRatio';
 import { colors } from '~/styles';
 
 export default StyleSheet.create({
   container: {
-    padding: 15,
+    padding: heightPercentageToDP('2.5%'),
     backgroundColor: colors.slate_blue,
     alignItems: 'center',
-    borderRadius: 10,
+    borderRadius: heightPercentageToDP('2.1%'),
   },
   txtBtn: {
-    fontSize: 16,
+    fontSize: heightPercentageToDP('2.5%'),
     fontWeight: 'bold',
     color: colors.white,
   },
