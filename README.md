@@ -1,5 +1,7 @@
 # Razzo Blog mobile
 
+![Screenshot](screenshot.jpeg)
+
 ### Consumo da api Razzo
 
 - Cadastro de publicações
