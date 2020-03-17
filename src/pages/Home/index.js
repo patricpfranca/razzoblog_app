@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import List from '~/components/List';
 import ModalComp from '~/components/ModalComp';
-import Register from '~/pages/Register';
+import Form from '~/pages/Form';
 import api from '~/services/api';
 import { colors } from '~/styles';
 
@@ -37,6 +37,10 @@ export default function Home({ navigation }) {
     return publication.filter(pub => pub.checked);
   }, [publication]);
 
+  const filterFirst = useMemo(() => {
+    return publication.find(pub => pub.checked);
+  }, [publication]);
+
   function selectedCheck() {
     return `${filter.length} artigo(s) selecionado(s)`;
   }
@@ -60,6 +64,14 @@ export default function Home({ navigation }) {
     }
   }
 
+  function checkEdit() {
+    if (filter.length > 1) {
+      Alert.alert('Erro', 'Só é possível editar uma publicação por vez');
+    } else {
+      setModal(!modal);
+    }
+  }
+
   useEffect(() => {
     loadPublication();
   }, []);
@@ -71,7 +83,7 @@ export default function Home({ navigation }) {
         <View style={styles.content}>
           <Text style={styles.selected}>{selectedCheck()}</Text>
           <View style={styles.boxIcon}>
-            <TouchableOpacity style={styles.icon}>
+            <TouchableOpacity style={styles.icon} onPress={() => checkEdit()}>
               <FontAwesome
                 name="pencil-square-o"
                 size={25}
@@ -97,10 +109,11 @@ export default function Home({ navigation }) {
         onPress={() => setModal(!modal)}
       />
       <ModalComp close={() => setModal(!modal)} modal={modal} title="Cadastrar">
-        <Register
+        <Form
           close={() => setModal(!modal)}
           navigation={navigation}
           refresh={refreshList}
+          value={filterFirst}
         />
       </ModalComp>
     </View>
