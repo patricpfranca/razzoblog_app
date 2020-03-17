@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import List from '~/components/List';
 import ModalComp from '~/components/ModalComp';
+import { heightPercentageToDP } from '~/config/PixelRatio';
 import Form from '~/pages/Form';
 import api from '~/services/api';
 import { colors } from '~/styles';
@@ -86,14 +87,18 @@ export default function Home({ navigation }) {
             <TouchableOpacity style={styles.icon} onPress={() => checkEdit()}>
               <FontAwesome
                 name="pencil-square-o"
-                size={25}
+                size={heightPercentageToDP('3.8%')}
                 color={colors.echo_blue}
               />
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.icon}
               onPress={() => deletePublication()}>
-              <FontAwesome name="trash" size={25} color={colors.echo_blue} />
+              <FontAwesome
+                name="trash"
+                size={heightPercentageToDP('3.8%')}
+                color={colors.echo_blue}
+              />
             </TouchableOpacity>
           </View>
         </View>
