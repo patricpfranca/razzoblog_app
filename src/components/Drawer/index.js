@@ -8,15 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import PropTypes from 'prop-types';
-
 import api from '~/services/api';
 
 import styles from './style';
 
 const logo = require('../../../assets/logo.png');
 
-export default function Drawer({ navigation }) {
+export default function Drawer() {
   const [categories, setCategories] = useState([]);
 
   async function loadCategories() {
@@ -48,10 +46,8 @@ export default function Drawer({ navigation }) {
           </TouchableOpacity>
           <Text style={styles.title}>Categorias</Text>
           {categories.map(item => (
-            <TouchableOpacity>
-              <Text key={item} style={styles.links}>
-                {item}
-              </Text>
+            <TouchableOpacity key={item}>
+              <Text style={styles.links}>{item}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -59,7 +55,3 @@ export default function Drawer({ navigation }) {
     </SafeAreaView>
   );
 }
-
-Drawer.propTypes = {
-  navigation: PropTypes.shape({}).isRequired,
-};
